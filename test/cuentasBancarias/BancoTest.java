@@ -9,9 +9,9 @@ public class BancoTest {
 	@Test
 	public void queSePuedaCrearCuentaBancaria() {
 		Banco banco = new Banco();
-		CuentaSueldo cuentaSueldo = new CuentaSueldo("Eliana", 1, "123");
-		CuentaCorriente cuentaCorriente = new CuentaCorriente("Maxi", 100.0, 2, "234" );
-		CajaDeAhorros cajaDeAhorros = new CajaDeAhorros("Lara", 3, "456");
+		Cuenta cuentaSueldo = new CuentaSueldo("Eliana", 1, "123");
+		Cuenta cuentaCorriente = new CuentaCorriente("Maxi", 100.0, 2, "234" );
+		Cuenta cajaDeAhorros = new CajaDeAhorros("Lara", 3, "456");
 		
 		assertTrue(banco.crearCuenta(cuentaCorriente));
 		assertTrue(banco.crearCuenta(cuentaSueldo));
@@ -21,8 +21,8 @@ public class BancoTest {
 	@Test
 	public void queNoSePuedaCrearCuentaBancariaConMismoNumeroDeCuenta() {
 		Banco banco = new Banco();
-		CuentaSueldo cuentaSueldo = new CuentaSueldo("Eliana", 1, "123");
-		CuentaCorriente cuentaCorriente = new CuentaCorriente("Maxi", 100.0, 1, "234" );
+		Cuenta cuentaSueldo = new CuentaSueldo("Eliana", 1, "123");
+		Cuenta cuentaCorriente = new CuentaCorriente("Maxi", 100.0, 1, "234" );
 		
 		assertTrue(banco.crearCuenta(cuentaCorriente));
 		assertFalse(banco.crearCuenta(cuentaSueldo));
@@ -31,7 +31,7 @@ public class BancoTest {
 	@Test
 	public void queSePuedaRealizarUnDepositoEnCuentaCorriente() {
 		Banco banco = new Banco();
-		CuentaCorriente cuentaCorriente = new CuentaCorriente("Maxi", 100.0, 2, "234" );
+		Cuenta cuentaCorriente = new CuentaCorriente("Maxi", 100.0, 2, "234" );
 		banco.crearCuenta(cuentaCorriente);
 		
 		Transaccion transaccion = new Transaccion(1, MotivoTransaccion.DEPOSITO, cuentaCorriente, 500.0);
@@ -49,7 +49,7 @@ public class BancoTest {
 	@Test
 	public void queSePuedaRealizarUnDepositoEnCajaDeAhorros() {
 		Banco banco = new Banco();
-		CajaDeAhorros cajaDeAhorros = new CajaDeAhorros("Lara", 3, "456");
+		Cuenta cajaDeAhorros = new CajaDeAhorros("Lara", 3, "456");
 		
 		banco.crearCuenta(cajaDeAhorros);
 		
@@ -68,7 +68,7 @@ public class BancoTest {
 	@Test
 	public void queSePuedaRealizarUnDepositoEnCuentaSueldo() {
 		Banco banco = new Banco();
-		CuentaSueldo cuentaSueldo = new CuentaSueldo("Eliana", 1, "123");
+		Cuenta cuentaSueldo = new CuentaSueldo("Eliana", 1, "123");
 		banco.crearCuenta(cuentaSueldo);
 		
 		Transaccion transaccion = new Transaccion(1, MotivoTransaccion.DEPOSITO, cuentaSueldo, 500.0);
@@ -87,7 +87,7 @@ public class BancoTest {
 	@Test
 	public void queSePuedaRealizarUnaExtranccionEnCuentaCorriente() {
 		Banco banco = new Banco();
-		CuentaCorriente cuentaCorriente = new CuentaCorriente("Maxi", 100.0, 2, "234" );
+		Cuenta cuentaCorriente = new CuentaCorriente("Maxi", 100.0, 2, "234" );
 		banco.crearCuenta(cuentaCorriente);
 		
 		Transaccion transaccion = new Transaccion(1, MotivoTransaccion.DEPOSITO, cuentaCorriente, 500.0);
@@ -111,7 +111,7 @@ public class BancoTest {
 	@Test
 	public void queSePuedaRealizarUnaExtranccionEnCajaDeAhorros() {
 		Banco banco = new Banco();
-		CajaDeAhorros cajaDeAhorros = new CajaDeAhorros("Lara", 3, "456");
+		Cuenta cajaDeAhorros = new CajaDeAhorros("Lara", 3, "456");
 		
 		banco.crearCuenta(cajaDeAhorros);
 		
@@ -136,7 +136,7 @@ public class BancoTest {
 	@Test
 	public void queSePuedaRealizarUnaExtranccionEnCuentaSueldo() {
 		Banco banco = new Banco();
-		CuentaSueldo cuentaSueldo = new CuentaSueldo("Eliana", 1, "123");
+		Cuenta cuentaSueldo = new CuentaSueldo("Eliana", 1, "123");
 		banco.crearCuenta(cuentaSueldo);
 		
 		Transaccion transaccion = new Transaccion(1, MotivoTransaccion.DEPOSITO, cuentaSueldo, 500.0);
@@ -163,7 +163,7 @@ public class BancoTest {
 	@Test
 	public void queSePuedaRealizar6ExtraccionesEnCajaDeAhorrosYSeCobreAdicional() throws CuentaInexistenteException {
 		Banco banco = new Banco();
-		CajaDeAhorros cajaDeAhorros = new CajaDeAhorros("Lara", 3, "456");
+		Cuenta cajaDeAhorros = new CajaDeAhorros("Lara", 3, "456");
 			
 		banco.crearCuenta(cajaDeAhorros);
 			
@@ -208,9 +208,9 @@ public class BancoTest {
 	@Test 
 	public void queArrojeSaldoInsuficienteCuandoNoHayaMasSaldoEnCuentas() throws SaldoInsuficiente, CuentaInexistenteException{
 		Banco banco = new Banco();
-		CuentaSueldo cuentaSueldo = new CuentaSueldo("Eliana", 1, "123");
-		CuentaCorriente cuentaCorriente = new CuentaCorriente("Maxi", 100.0, 2, "234" );
-		CajaDeAhorros cajaDeAhorros = new CajaDeAhorros("Lara", 3, "456");
+		Cuenta cuentaSueldo = new CuentaSueldo("Eliana", 1, "123");
+		Cuenta cuentaCorriente = new CuentaCorriente("Maxi", 100.0, 2, "234" );
+		Cuenta cajaDeAhorros = new CajaDeAhorros("Lara", 3, "456");
 		
 		banco.crearCuenta(cuentaCorriente);
 		banco.crearCuenta(cuentaSueldo);
@@ -240,8 +240,8 @@ public class BancoTest {
 	@Test 
 	public void queNoSePuedaHacerTransferenciaSiAlgunaDeLasCuentasNoExisteEnElBanco(){
 		Banco banco = new Banco();
-		CuentaSueldo cuentaSueldo = new CuentaSueldo("Eliana", 1, "123");
-		CuentaCorriente cuentaCorriente = new CuentaCorriente("Maxi", 100.0, 2, "234" );
+		Cuenta cuentaSueldo = new CuentaSueldo("Eliana", 1, "123");
+		Cuenta cuentaCorriente = new CuentaCorriente("Maxi", 100.0, 2, "234" );
 		banco.crearCuenta(cuentaSueldo);
 		Transaccion transaccionUno = new Transaccion(1, MotivoTransaccion.DEPOSITO, cuentaSueldo, 500.0);
 		Transaccion transaccionDos = new Transaccion(2, MotivoTransaccion.TRANSFERENCIA, cuentaSueldo, cuentaCorriente, 300.0);
@@ -264,8 +264,8 @@ public class BancoTest {
 	@Test
 	public void queSePuedaRealizarUnaTransferencia() throws CuentaInexistenteException{
 		Banco banco = new Banco();
-		CuentaSueldo cuentaSueldo = new CuentaSueldo("Eliana", 1, "123");
-		CuentaCorriente cuentaCorriente = new CuentaCorriente("Maxi", 100.0, 2, "234" );
+		Cuenta cuentaSueldo = new CuentaSueldo("Eliana", 1, "123");
+		Cuenta cuentaCorriente = new CuentaCorriente("Maxi", 100.0, 2, "234" );
 		banco.crearCuenta(cuentaCorriente);
 		banco.crearCuenta(cuentaSueldo);
 		Transaccion transaccionUno = new Transaccion(1, MotivoTransaccion.DEPOSITO, cuentaCorriente, 500.0);
